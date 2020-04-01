@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ektara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="connection_body">
+     <% include partials/header.ejs %>
+    <% include partials/nav.ejs %>
+
+    <div class="connection_event">
+        <p><%= alert%></p>
+        <h1><%= connectionData[0].connectionName %></h1>
+        <div><img src=<%= connectionData[0].image %> alt="Paper presentation" width="200" height="140">
+            <p>Date : <%= connectionData[0].date %></p>
+            <p>Time : <%= connectionData[0].time %></p>
+            <p>Venue : <%= connectionData[0].venue %></p>
+        </div>
+        <div class="connection_interested">
+            <p>Let the game begin.Are you in?</p>
+            <%if(user){%>
+            <form method="post" >
+              <button class="button1" formaction= "/savedConnections?connectionID=<%=connectionData[0].connectionID %>&rsvp=yes"> Yes</button>
+              <button class="button2" formaction="/savedConnections?connectionID=<%=connectionData[0].connectionID %>&rsvp=no">No</button>
+              <button class="button3" formaction="/savedConnections?connectionID=<%=connectionData[0].connectionID %>&rsvp=maybe">Maybe</button>
+              <input type="hidden" name ="action" value= "save">
+            </form>
+            <%}else{%>
+              <button onclick="window.location.href='connection?connectionID=<%=connectionData[0].connectionID%>&alert=YOU NEED TO LOGIN TO VIEW SAVEDCONNECTIONS PAGE'" class = "button1" type="button">Yes</button>
+              <button onclick="window.location.href='connection?connectionID=<%=connectionData[0].connectionID%>&alert=YOU NEED TO LOGIN TO VIEW SAVEDCONNECTIONS PAGE'" class = "button2" type="button">No</button>
+              <button onclick="window.location.href='connection?connectionID=<%=connectionData[0].connectionID%>&alert=YOU NEED TO LOGIN TO VIEW SAVEDCONNECTIONS PAGE'" class = "button3" type="button">Maybe</button>
+            <%}%>
+        </div>
+        <h2>Details</h2>
+        <p><%= connectionData[0].details %></p>
+        <%if(user){%>
+        <%if(user.userId==connectionData[0].userId){%>
+          <form class="buttonform" method="post">
+          <button class="buttonnew" formaction= "/updateNewConnection?connuserid=<%=connectionData[0].connectionID%>&uuserId=<%=user.userId%>"> Update Connection</button>
+          <input type="hidden" name ="action" value= "updateconn">
+        </form>
+        <form class="buttonform" method="post">
+        <button class="buttonnew" formaction="/updateNewConnection?connuserid=<%=connectionData[0].connectionID%>&uuserId=<%=user.userId%>">Delete Connection</button>
+        <input type="hidden" name ="action" value= "deleteconn">
+      </form>
+          <%}%>
+          <%}%>
+    </div>
+    <% include partials/footer.ejs %>
+</body>
+</html>

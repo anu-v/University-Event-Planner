@@ -1,0 +1,13 @@
+     <header>
+        <a href="/index"><img src='/assets/images/tech.jpg' width="82" height=86 alt="Logo"></a>
+        <nav class="top-nav">
+          <div>
+            <a href="/newConnection">Start a new event</a>
+            <% if(user){%><a href="/savedConnections">MyConnections</a><%} else { %> <a href= "/Login" >Login<%} %> </a>
+            <% if(user){%><a href="/signout">Sign out</a><%} else { %> <a href="/signup">Sign Up <%} %> </a>
+          </div>
+          <div>
+            <% if(user){%><span>Welcome <%=user.firstName%> !!!!! <%} %></span></div>
+
+        </nav>
+    </header>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ektara-Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <% include partials/header.ejs %>
+    <% include partials/nav.ejs %>
+    <section>
+
+        <form class="main_div" method="POST" action="Login">
+                     <p><%= alert %></p>
+                        <p>
+                              <label for="username">
+                                  <span>Username: </span>
+                                </label>
+                            <input type="text" id="username" name="username" placeholder="Enter Username">
+            </p>
+            <p>
+                              <label for="password">
+                                    <span>Password: </span>
+                                  </label>
+                              <input type="password" id="password" name="password" placeholder="Enter Password">
+                            </p>              
+
+            <p> <button type="submit">Sign in</button> </p>
+                   </form>
+    </section>
+
+
+    <% include partials/footer.ejs %>
+</body>
+
+</html>
